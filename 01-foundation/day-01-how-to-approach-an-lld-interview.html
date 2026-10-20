@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Day 1 — How to Approach an LLD Interview</title>
+    <style>
+        body{font:16px/1.65 Arial,sans-serif;max-width:960px;margin:36px auto;padding:0 22px;color:#202b36}
+        h1,h2,h3{color:#214e75;line-height:1.3}h1{border-bottom:3px solid #214e75;padding-bottom:12px}
+        h2{margin-top:34px;border-bottom:1px solid #d5dde5;padding-bottom:7px}
+        pre{background:#f2f6fa;padding:14px;border-radius:7px;overflow:auto}
+        table{border-collapse:collapse;width:100%;margin:14px 0}th,td{border:1px solid #d5dde5;padding:9px;text-align:left;vertical-align:top}th{background:#f2f6fa}
+        .note{background:#eaf6ee;padding:13px;border-left:4px solid #43865b}
+    </style>
+</head>
+<body>
+<h1>Day 1 — How to Approach an LLD Interview</h1>
+<p><strong>Practice problem:</strong> Library Management System</p>
+<p><strong>Goal:</strong> Learn how to turn a problem into a clear, simple design before writing code.</p>
+<div class="note"><strong>Main lesson:</strong> Start with the requirements, not with code or design patterns. Build only what the problem needs.</div>
+
+<h2>1. What Is LLD?</h2>
+<p><strong>LLD</strong> means <em>Low-Level Design</em>. It is planning the parts inside a program: which classes we need, what each class is responsible for, and how those classes work together.</p>
+<p>For example, a library program may need to represent a book title, a physical copy, a member, and a borrowing record.</p>
+
+<h2>2. A Simple Interview Plan</h2>
+<ol>
+    <li>Understand what the system must do.</li><li>Identify who will use it.</li><li>List the main actions they need.</li><li>Choose the important objects the program must remember.</li><li>Decide what each object should know and do.</li><li>Decide how the objects connect.</li><li>Write the main code and check important cases.</li><li>Explain what you would add if the requirements grew.</li>
+</ol>
+<pre>Requirements
+    ↓
+Users and actions
+    ↓
+Objects and responsibilities
+    ↓
+Connections between objects
+    ↓
+Code → Checks → Improvements</pre>
+
+<h2>3. Understand the Problem First</h2>
+<p>The interviewer says: <strong>“Design a Library Management System.”</strong> This is broad, so first agree on a small set of requirements.</p>
+<p>For today's version, the library must be able to:</p>
+<ul><li>Add a physical copy of a book.</li><li>Register a member.</li><li>Search for a book by title.</li><li>Lend an available copy.</li><li>Accept a returned copy.</li><li>Show whether a copy is available.</li></ul>
+<p>We will not build a website, database, login system, or distributed service today. We are focusing on the basic design inside the program.</p>
+
+<h2>4. Who Uses the System?</h2>
+<p>In design discussions, an <strong>actor</strong> means a person or another system that uses the system we are designing.</p>
+<table><tr><th>Actor</th><th>Actions</th></tr><tr><td>Member</td><td>Search for a book, borrow a copy, return a copy.</td></tr><tr><td>Librarian</td><td>Add book copies and register members.</td></tr></table>
+
+<h2>5. Find the Important Objects</h2>
+<p>An <strong>object</strong> represents something in the program and can hold information about it. In Java, a <strong>class</strong> defines the structure used to create objects.</p>
+<ul>
+    <li><strong>Book:</strong> information about a book title.</li><li><strong>BookCopy:</strong> one physical copy owned by the library.</li><li><strong>Member:</strong> a registered person.</li><li><strong>Loan:</strong> a record that a member borrowed a particular copy.</li><li><strong>Library:</strong> coordinates the main operations.</li>
+</ul>
+<p>Do not turn every word in a requirement into a class. Create a class when it represents something important that the program needs to remember or act on.</p>
+
+<h2>6. Why Separate Book and BookCopy?</h2>
+<p>Imagine the library owns three copies of <em>Clean Code</em>.</p>
+<pre>Book: "Clean Code"
+  ├── Copy C-101 — available
+  ├── Copy C-102 — borrowed
+  └── Copy C-103 — available</pre>
+<p><strong>Book</strong> holds details shared by all copies, such as title and author. <strong>BookCopy</strong> represents one real copy. Each copy has its own ID and availability.</p>
+<p>If availability were stored only on Book, we would not know which of the three copies had been borrowed.</p>
+
+<h2>7. Give Each Object a Responsibility</h2>
+<p>Ask: <strong>“What information should this object hold, and what action should it control?”</strong></p>
+<table><tr><th>Class</th><th>Information</th><th>Responsibility</th></tr>
+    <tr><td>Book</td><td>ISBN, title, author</td><td>Provide book details.</td></tr>
+    <tr><td>BookCopy</td><td>Copy ID, book, availability</td><td>Allow borrowing and returning.</td></tr>
+    <tr><td>Member</td><td>Member ID, name</td><td>Represent a registered member.</td></tr>
+    <tr><td>Loan</td><td>Member, copy, borrow time, return time</td><td>Record a borrowing.</td></tr>
+    <tr><td>Library</td><td>Copies, members, loans</td><td>Coordinate library operations.</td></tr></table>
+
+<h2>8. Let an Object Protect Its Own Information</h2>
+<p>We must prevent a second borrow attempt when a copy is already borrowed. Instead of letting any code change availability directly, let <code>BookCopy</code> check its state first.</p>
+<pre>public void borrow() {
+    if (!available) {
+        throw new IllegalStateException("Copy is not available");
+    }
+    available = false;
+}</pre>
+<p>This is called <strong>encapsulation</strong>: an object keeps control over its information and the rules for changing it.</p>
+
+<h2>9. How the Objects Connect</h2>
+<pre>Library
+ ├── keeps track of BookCopy objects
+ ├── keeps track of Member objects
+ └── keeps track of Loan objects
+
+BookCopy ── represents one physical copy of ──> Book
+Loan ── records which Member borrowed which BookCopy</pre>
+<p>The Library coordinates the operation, but BookCopy checks whether it can be borrowed.</p>
+
+<h2>10. Java Implementation</h2>
+<p>
+    The runnable implementation is maintained in
+    <code>src/main/java/com/lld/library/</code>.
+    Use those files as the source of truth for the current implementation.
+</p>
+
+<p>Put each public class in a separate file under package <code>com.lld.library</code>.</p>
+<h3>Book.java</h3>
+<pre><code>package com.lld.library;
+
+public class Book {
+    private final String isbn;
+    private final String title;
+    private final String author;
+
+    public Book(String isbn, String title, String author) {
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+    }
+
+    public String getIsbn() { return isbn; }
+    public String getTitle() { return title; }
+    public String getAuthor() { return author; }
+}</code></pre>
+
+<h3>BookCopy.java</h3>
+<pre><code>package com.lld.library;
+
+public class BookCopy {
+    private final String id;
+    private final Book book;
+    private boolean available = true;
+
+    public BookCopy(String id, Book book) {
+        this.id = id;
+        this.book = book;
+    }
+
+    public void borrow() {
+        if (!available) {
+            throw new IllegalStateException("Copy is not available");
+        }
+        available = false;
+    }
+
+    public void returnBook() {
+        if (available) {
+            throw new IllegalStateException("Copy has not been borrowed");
+        }
+        available = true;
+    }
+
+    public String getId() { return id; }
+    public Book getBook() { return book; }
+    public boolean isAvailable() { return available; }
+}</code></pre>
+
+<h3>Member.java</h3>
+<pre><code>package com.lld.library;
+
+public class Member {
+    private final String id;
+    private final String name;
+
+    public Member(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public String getId() { return id; }
+    public String getName() { return name; }
+}</code></pre>
+
+<h3>Loan.java</h3>
+<pre><code>package com.lld.library;
+
+import java.time.LocalDateTime;
+
+public class Loan {
+    private final Member member;
+    private final BookCopy bookCopy;
+    private final LocalDateTime borrowedAt;
+    private LocalDateTime returnedAt;
+
+    public Loan(Member member, BookCopy bookCopy) {
+        this.member = member;
+        this.bookCopy = bookCopy;
+        this.borrowedAt = LocalDateTime.now();
+    }
+
+    public void returnBook() {
+        if (!isActive()) {
+            throw new IllegalStateException("Loan has already been returned");
+        }
+        bookCopy.returnBook();
+        returnedAt = LocalDateTime.now();
+    }
+
+    public boolean isActive() { return returnedAt == null; }
+    public Member getMember() { return member; }
+    public BookCopy getBookCopy() { return bookCopy; }
+    public LocalDateTime getBorrowedAt() { return borrowedAt; }
+    public LocalDateTime getReturnedAt() { return returnedAt; }
+}</code></pre>
+
+<h3>Library.java</h3>
+<pre><code>package com.lld.library;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Library {
+    private final List&lt;BookCopy&gt; copies = new ArrayList&lt;&gt;();
+    private final List&lt;Member&gt; members = new ArrayList&lt;&gt;();
+    private final List&lt;Loan&gt; loans = new ArrayList&lt;&gt;();
+
+    public void addBookCopy(BookCopy copy) {
+        copies.add(copy);
+    }
+
+    public void registerMember(Member member) {
+        members.add(member);
+    }
+
+    public List&lt;BookCopy&gt; searchByTitle(String title) {
+        List&lt;BookCopy&gt; matches = new ArrayList&lt;&gt;();
+        for (BookCopy copy : copies) {
+            if (copy.getBook().getTitle().equalsIgnoreCase(title)) {
+                matches.add(copy);
+            }
+        }
+        return matches;
+    }
+
+    public Loan borrowBook(Member member, BookCopy copy) {
+        if (!members.contains(member)) {
+            throw new IllegalArgumentException("Member is not registered");
+        }
+        if (!copies.contains(copy)) {
+            throw new IllegalArgumentException("Copy does not belong to this library");
+        }
+        copy.borrow();
+        Loan loan = new Loan(member, copy);
+        loans.add(loan);
+        return loan;
+    }
+
+    public void returnBook(Loan loan) {
+        if (!loans.contains(loan)) {
+            throw new IllegalArgumentException("Loan does not belong to this library");
+        }
+        loan.returnBook();
+    }
+}</code></pre>
+
+<h2>11. Walk Through One Example</h2>
+<ol>
+    <li>The library registers member M-1.</li><li>The library adds copy C-101 of <em>Clean Code</em>.</li><li>The member asks to borrow C-101.</li><li>The library checks that the member and copy belong to this library.</li><li>BookCopy checks availability and marks the copy as borrowed.</li><li>The library creates a Loan to record who borrowed the copy.</li><li>When the loan is returned, the copy becomes available again.</li>
+</ol>
+
+<h2>12. Important Cases to Check</h2>
+<ul><li>Borrowing an available copy succeeds.</li><li>Borrowing the same copy twice fails.</li><li>Returning a borrowed copy makes it available.</li><li>Returning the same loan twice fails.</li><li>An unregistered member cannot borrow.</li><li>A copy outside this library cannot be borrowed through it.</li></ul>
+<p>We will learn JUnit separately, so you do not need to master test syntax today. Focus on deciding what should work and what should be rejected.</p>
+
+<h2>13. Why We Are Not Adding Design Patterns Yet</h2>
+<p>A <strong>design pattern</strong> is a commonly used way to solve a recurring design problem. It is a tool, not a requirement for every program.</p>
+<table><tr><th>If a requirement says…</th><th>Consider…</th></tr>
+    <tr><td>There are several ways to calculate a late fee.</td><td>A Strategy-style design, because the calculation can vary.</td></tr>
+    <tr><td>There are several ways to create different notification types.</td><td>A Factory, if the program must choose how to create an object by type.</td></tr>
+    <tr><td>Books must be saved in a database.</td><td>A separate storage/repository layer.</td></tr>
+    <tr><td>Two people might borrow the same copy at the same time.</td><td>Concurrency protection, which we will study later.</td></tr></table>
+<p>The current requirements can be handled with a few straightforward classes. Adding patterns now would make the design harder to follow without solving a real problem.</p>
+
+<h2>14. Interview Follow-up Questions</h2>
+<h3>Q1. A member can borrow at most five copies. Where would you enforce this?</h3>
+<p>Check the member's current active loans and limit before creating a new loan. As the rules grow, a separate borrowing policy may help keep them together.</p>
+<h3>Q2. Different membership types have different limits. What might change?</h3>
+<p>The limit varies by membership type. Keep this rule in one place instead of spreading membership checks through the code.</p>
+<h3>Q3. What if the library has thousands of copies?</h3>
+<p>The in-memory list is fine for learning. A real application may need database storage and faster searching, which are later improvements.</p>
+<h3>Q4. What if two members try to borrow the same copy at nearly the same time?</h3>
+<p>Both operations could check availability before either updates it. A real system needs a safe way to claim the copy. We will study this later.</p>
+
+<h2>15. Common Mistakes</h2>
+<ul><li>Writing code before agreeing on requirements.</li><li>Making every noun a class without checking whether it is useful.</li><li>Putting all rules into one giant class.</li><li>Adding patterns just to make the design look advanced.</li><li>Forgetting invalid cases, such as borrowing an unavailable copy.</li><li>Confusing a book title with one physical copy.</li></ul>
+
+<h2>16. How to Explain Your Design in an Interview</h2>
+<blockquote>“First, I clarified the actions the library must support. I identified the member and librarian as the users. I separated Book from BookCopy because one title can have several physical copies, each with its own availability. Loan records who borrowed which copy. Library coordinates the operations, while BookCopy protects its availability rule. I kept the design simple because the current requirements do not need extra patterns.”</blockquote>
+
+<h2>17. Quick Revision</h2>
+<ol><li>What does LLD mean?</li><li>What is an actor?</li><li>Why are Book and BookCopy different?</li><li>What information belongs in a Loan?</li><li>Why does BookCopy control its own availability?</li><li>Why are we not using design patterns yet?</li><li>What could go wrong if two people borrow the same copy at once?</li></ol>
+
+<h2>18. Practice Task</h2>
+<p>Build the basic Library Management System using these five classes:</p>
+<pre>Book
+BookCopy
+Member
+Loan
+Library</pre>
+<p>Support adding a copy, registering a member, searching by title, borrowing a copy, returning a loan, and checking availability. Then walk through the important cases in Section 12 and confirm the behavior makes sense.</p>
+<div class="note"><strong>Day 1 takeaway:</strong> Understand the problem, identify the important objects, give each one a clear responsibility, and keep the design as simple as the requirements allow.</div>
+</body>
+</html>

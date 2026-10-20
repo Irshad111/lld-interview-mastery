@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>45-Day LLD Interview Mastery - Complete Syllabus</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            max-width: 1150px;
+            margin: auto;
+            padding: 30px;
+            line-height: 1.65;
+            color: #222;
+        }
+
+        h1, h2, h3 {
+            color: #111;
+        }
+
+        h1 {
+            border-bottom: 3px solid #222;
+            padding-bottom: 12px;
+        }
+
+        h2 {
+            margin-top: 45px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 8px;
+        }
+
+        .phase {
+            background: #f4f4f4;
+            border-left: 5px solid #222;
+            padding: 16px 20px;
+            margin-top: 35px;
+        }
+
+        .day {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 18px 22px;
+            margin: 18px 0;
+            background: #fafafa;
+        }
+
+        .problem {
+            font-weight: bold;
+        }
+
+        .important {
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 9px;
+            text-align: left;
+        }
+
+        th {
+            background: #eee;
+        }
+
+        code {
+            background: #eee;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+
+        pre {
+            background: #f5f5f5;
+            padding: 18px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>45-Day LLD Interview Mastery</h1>
+
+<p>
+    A practical, interview-focused Low-Level Design course for experienced
+    software engineers.
+</p>
+
+<p>
+    The goal is not to memorize design patterns or memorize solutions to
+    famous questions.
+</p>
+
+<h2>🎯 Final Goal</h2>
+
+<p>
+    Given an unfamiliar LLD problem, you should be able to:
+</p>
+
+<ol>
+    <li>Clarify requirements.</li>
+    <li>Identify important objects.</li>
+    <li>Assign responsibilities.</li>
+    <li>Choose relationships.</li>
+    <li>Identify changing behaviour.</li>
+    <li>Select appropriate abstractions.</li>
+    <li>Recognize useful design patterns.</li>
+    <li>Write clean Java code.</li>
+    <li>Handle edge cases and concurrency.</li>
+    <li>Explain trade-offs.</li>
+    <li>Extend the design when requirements change.</li>
+</ol>
+
+<p>
+    <strong>
+        Requirement → Responsibility → Design → Code → Extension → Trade-off
+    </strong>
+</p>
+
+<hr>
+
+<h2>📌 Course Philosophy</h2>
+
+<ul>
+    <li>Practical rather than textbook-heavy.</li>
+    <li>Simple definitions.</li>
+    <li>Problems are used to teach patterns.</li>
+    <li>Patterns are not memorized blindly.</li>
+    <li>Every important pattern includes a "when NOT to use it" discussion.</li>
+    <li>Java implementation is part of the learning.</li>
+    <li>Concurrency is included wherever it naturally matters.</li>
+    <li>Database/persistence is included at the LLD level.</li>
+    <li>Machine-coding style problems are included.</li>
+    <li>Senior-level follow-up questions are included.</li>
+</ul>
+
+<hr>
+
+<h2>🧠 Pattern Recognition Framework</h2>
+
+<table>
+    <tr>
+        <th>Question in Your Mind</th>
+        <th>Possible Design Direction</th>
+    </tr>
+
+    <tr>
+        <td>Who should create this object?</td>
+        <td>Factory</td>
+    </tr>
+
+    <tr>
+        <td>Does the object have complicated construction?</td>
+        <td>Builder</td>
+    </tr>
+
+    <tr>
+        <td>Can an algorithm/behaviour change?</td>
+        <td>Strategy</td>
+    </tr>
+
+    <tr>
+        <td>Does behaviour depend on current state?</td>
+        <td>State</td>
+    </tr>
+
+    <tr>
+        <td>Do many objects need to know about an event?</td>
+        <td>Observer / Event</td>
+    </tr>
+
+    <tr>
+        <td>Can an operation be represented as an object?</td>
+        <td>Command</td>
+    </tr>
+
+    <tr>
+        <td>Can the request pass through multiple handlers?</td>
+        <td>Chain of Responsibility</td>
+    </tr>
+
+    <tr>
+        <td>Can behaviour be added around an existing object?</td>
+        <td>Decorator</td>
+    </tr>
+
+    <tr>
+        <td>Does an external API have the wrong interface?</td>
+        <td>Adapter</td>
+    </tr>
+
+    <tr>
+        <td>Is a complex subsystem being hidden?</td>
+        <td>Facade</td>
+    </tr>
+
+    <tr>
+        <td>Is there a tree of objects?</td>
+        <td>Composite</td>
+    </tr>
+
+    <tr>
+        <td>Do we need controlled access to another object?</td>
+        <td>Proxy</td>
+    </tr>
+
+    <tr>
+        <td>Do we need to restore previous state?</td>
+        <td>Memento / Command / State snapshot</td>
+    </tr>
+
+    <tr>
+        <td>Are multiple implementations interchangeable?</td>
+        <td>Polymorphism / Strategy / Factory</td>
+    </tr>
+</table>
+
+<hr>
+
+<!-- ====================================================== -->
+<!-- PHASE 1 -->
+<!-- ====================================================== -->
+
+<div class="phase">
+
+    <h2>PHASE 1 — LLD FOUNDATION</h2>
+
+    <p><strong>Days 1–7</strong></p>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 1 — How to Approach an LLD Interview</h3>
+
+    <ul>
+        <li>What LLD actually means</li>
+        <li>LLD vs HLD</li>
+        <li>Requirement clarification</li>
+        <li>Functional vs non-functional requirements</li>
+        <li>Actors and use cases</li>
+        <li>Finding candidate objects</li>
+        <li>Finding responsibilities</li>
+        <li>Interview conversation flow</li>
+    </ul>
+
+    <p class="problem">Practice: Library Management System</p>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 2 — OOP for LLD</h3>
+
+    <ul>
+        <li>Class and object</li>
+        <li>Encapsulation</li>
+        <li>Abstraction</li>
+        <li>Inheritance</li>
+        <li>Polymorphism</li>
+        <li>Composition</li>
+        <li>Composition vs inheritance</li>
+    </ul>
+
+    <p class="problem">Practice: Order Management System</p>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 3 — Object Relationships</h3>
+
+    <ul>
+        <li>Association</li>
+        <li>Aggregation</li>
+        <li>Composition</li>
+        <li>Has-a vs Is-a</li>
+        <li>Ownership</li>
+        <li>Object lifecycle</li>
+    </ul>
+
+    <p class="problem">Practice: Parking Lot — basic model</p>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 4 — Interfaces, Abstraction & Polymorphism</h3>
+
+    <ul>
+        <li>Interface</li>
+        <li>Abstract class</li>
+        <li>Programming to interfaces</li>
+        <li>Dependency direction</li>
+        <li>Runtime polymorphism</li>
+        <li>Testability</li>
+    </ul>
+
+    <p class="problem">Practice: Payment System</p>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 5 — SOLID Through Real Code</h3>
+
+    <ul>
+        <li>SRP</li>
+        <li>OCP</li>
+        <li>LSP</li>
+        <li>ISP</li>
+        <li>DIP</li>
+        <li>Bad design → refactoring</li>
+    </ul>
+
+    <p class="problem">Practice: Order + Payment + Notification</p>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 6 — Design Smells & Overengineering</h3>
+
+    <ul>
+        <li>God class</li>
+        <li>Long if/else chains</li>
+        <li>Wrong inheritance</li>
+        <li>Too many abstractions</li>
+        <li>Premature design patterns</li>
+        <li>Overengineering</li>
+        <li>When simple code is better</li>
+    </ul>
+
+    <p class="problem">Practice: Refactor a deliberately bad design</p>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 7 — UML & Design Communication</h3>
+
+    <ul>
+        <li>Class diagrams</li>
+        <li>Sequence diagrams</li>
+        <li>State diagrams</li>
+        <li>Relationship notation</li>
+        <li>How much UML is enough in an interview?</li>
+    </ul>
+
+    <p class="problem">Practice: Parking Lot + Order System</p>
+
+</div>
+
+<hr>
+
+<!-- ====================================================== -->
+<!-- PHASE 2 -->
+<!-- ====================================================== -->
+
+<div class="phase">
+
+    <h2>PHASE 2 — CREATIONAL PATTERNS + PROBLEMS</h2>
+
+    <p><strong>Days 8–10</strong></p>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 8 — Factory Pattern</h3>
+
+    <p>
+        Easy definition:
+        <strong>Move complicated object creation away from the caller.</strong>
+    </p>
+
+    <ul>
+        <li>Simple Factory</li>
+        <li>Factory Method</li>
+        <li>Abstract Factory — interview awareness</li>
+        <li>Creation based on type</li>
+        <li>Extensibility</li>
+        <li>When Factory is unnecessary</li>
+    </ul>
+
+    <p class="problem">Problems:</p>
+
+    <ul>
+        <li>Notification Factory</li>
+        <li>Payment Factory</li>
+        <li>Vehicle Factory</li>
+    </ul>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 9 — Builder + Prototype</h3>
+
+    <ul>
+        <li>Builder</li>
+        <li>Immutable objects</li>
+        <li>Optional parameters</li>
+        <li>Prototype</li>
+        <li>Deep vs shallow copy</li>
+    </ul>
+
+    <p class="problem">Problems:</p>
+
+    <ul>
+        <li>Complex User/Profile Builder</li>
+        <li>Document cloning</li>
+    </ul>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 10 — Singleton & Object Lifecycle</h3>
+
+    <ul>
+        <li>Singleton</li>
+        <li>Thread safety</li>
+        <li>Lazy initialization</li>
+        <li>Enum Singleton</li>
+        <li>Why Singleton can create problems</li>
+        <li>Dependency Injection alternative</li>
+    </ul>
+
+    <p class="problem">Practice: Logger / Configuration Manager</p>
+
+</div>
+
+<hr>
+
+<!-- ====================================================== -->
+<!-- PHASE 3 -->
+<!-- ====================================================== -->
+
+<div class="phase">
+
+    <h2>PHASE 3 — STRUCTURAL PATTERNS + PROBLEMS</h2>
+
+    <p><strong>Days 11–14</strong></p>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 11 — Adapter + Facade</h3>
+
+    <ul>
+        <li>Adapter</li>
+        <li>External API integration</li>
+        <li>Facade</li>
+        <li>Hiding subsystem complexity</li>
+        <li>Adapter vs Facade</li>
+    </ul>
+
+    <p class="problem">Problems:</p>
+
+    <ul>
+        <li>Multiple Payment Gateway Integration</li>
+        <li>Banking API Adapter</li>
+        <li>Order Checkout Facade</li>
+    </ul>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 12 — Decorator + Proxy</h3>
+
+    <ul>
+        <li>Decorator</li>
+        <li>Dynamic behaviour addition</li>
+        <li>Proxy</li>
+        <li>Access control</li>
+        <li>Lazy loading</li>
+        <li>Decorator vs Proxy</li>
+    </ul>
+
+    <p class="problem">Problems:</p>
+
+    <ul>
+        <li>Coffee Machine</li>
+        <li>Authorization Proxy</li>
+        <li>Cached Service Proxy</li>
+    </ul>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 13 — Composite</h3>
+
+    <ul>
+        <li>Tree structures</li>
+        <li>Leaf</li>
+        <li>Composite</li>
+        <li>Uniform treatment</li>
+    </ul>
+
+    <p class="problem">Problems:</p>
+
+    <ul>
+        <li>File System</li>
+        <li>Menu / Submenu</li>
+        <li>Organization Hierarchy</li>
+    </ul>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 14 — Bridge + Flyweight</h3>
+
+    <ul>
+        <li>Bridge</li>
+        <li>Separate abstraction from implementation</li>
+        <li>Flyweight</li>
+        <li>Shared immutable objects</li>
+        <li>Memory optimization</li>
+    </ul>
+
+    <p class="problem">Problems:</p>
+
+    <ul>
+        <li>Shape + Rendering System</li>
+        <li>Large Text / Character Rendering</li>
+    </ul>
+
+</div>
+
+<hr>
+
+<!-- ====================================================== -->
+<!-- PHASE 4 -->
+<!-- ====================================================== -->
+
+<div class="phase">
+
+    <h2>PHASE 4 — BEHAVIORAL PATTERNS + PROBLEMS</h2>
+
+    <p><strong>Days 15–20</strong></p>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 15 — Strategy Pattern</h3>
+
+    <p>
+        Easy definition:
+        <strong>Put changing behaviour behind an interface.</strong>
+    </p>
+
+    <p class="problem">Problems:</p>
+
+    <ul>
+        <li>Parking Pricing</li>
+        <li>Payment Methods</li>
+        <li>Splitwise Split Strategies</li>
+        <li>Rate Limiter Algorithms</li>
+        <li>Ride Matching</li>
+    </ul>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 16 — Observer Pattern</h3>
+
+    <p>
+        Easy definition:
+        <strong>Tell interested objects when something changes.</strong>
+    </p>
+
+    <p class="problem">Problems:</p>
+
+    <ul>
+        <li>Notification System</li>
+        <li>Stock Price Updates</li>
+        <li>Order Status Updates</li>
+        <li>Inventory Alerts</li>
+    </ul>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 17 — State Pattern</h3>
+
+    <p>
+        Easy definition:
+        <strong>Move state-dependent behaviour into state objects.</strong>
+    </p>
+
+    <p class="problem">Problems:</p>
+
+    <ul>
+        <li>Vending Machine</li>
+        <li>ATM</li>
+        <li>Order Lifecycle</li>
+        <li>Elevator</li>
+        <li>Ticket Booking Lifecycle</li>
+    </ul>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 18 — Command + Memento</h3>
+
+    <ul>
+        <li>Command</li>
+        <li>Undo/Redo</li>
+        <li>Command history</li>
+        <li>Memento</li>
+        <li>State snapshots</li>
+    </ul>
+
+    <p class="problem">Problems:</p>
+
+    <ul>
+        <li>Text Editor Undo/Redo</li>
+        <li>Chess Move Undo</li>
+        <li>Drawing Application</li>
+    </ul>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 19 — Chain of Responsibility</h3>
+
+    <p>
+        Easy definition:
+        <strong>Pass a request through a chain until the appropriate handler handles it.</strong>
+    </p>
+
+    <p class="problem">Problems:</p>
+
+    <ul>
+        <li>ATM Cash Dispensing</li>
+        <li>Logging Pipeline</li>
+        <li>Request Validation Pipeline</li>
+        <li>Authentication + Authorization Pipeline</li>
+    </ul>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 20 — Template Method, Iterator, Mediator & Visitor</h3>
+
+    <ul>
+        <li>Template Method</li>
+        <li>Iterator</li>
+        <li>Mediator</li>
+        <li>Visitor</li>
+        <li>When these patterns are useful</li>
+        <li>When they are unnecessary</li>
+    </ul>
+
+    <p class="problem">Problems:</p>
+
+    <ul>
+        <li>Report Generation</li>
+        <li>Chat Room</li>
+        <li>Custom Collection</li>
+        <li>Document Processing</li>
+    </ul>
+
+</div>
+
+<hr>
+
+<!-- ====================================================== -->
+<!-- PHASE 5 -->
+<!-- ====================================================== -->
+
+<div class="phase">
+
+    <h2>PHASE 5 — CORE INTERVIEW PROBLEM LAB</h2>
+
+    <p><strong>Days 21–30</strong></p>
+
+    <p>
+        These are selected from recurring LLD interview themes across multiple
+        sources, rather than copied from one question list.
+    </p>
+
+</div>
+
+<div class="day">
+    <h3>Day 21 — Parking Lot</h3>
+
+    <ul>
+        <li>Vehicle types</li>
+        <li>Spot types</li>
+        <li>Ticket lifecycle</li>
+        <li>Allocation Strategy</li>
+        <li>Pricing Strategy</li>
+        <li>Factory</li>
+        <li>Concurrency follow-up</li>
+    </ul>
+</div>
+
+<div class="day">
+    <h3>Day 22 — Elevator System</h3>
+
+    <ul>
+        <li>Elevator states</li>
+        <li>Requests</li>
+        <li>Scheduling</li>
+        <li>Direction</li>
+        <li>Multiple elevators</li>
+        <li>Scheduling Strategy</li>
+    </ul>
+</div>
+
+<div class="day">
+    <h3>Day 23 — Vending Machine + ATM</h3>
+
+    <ul>
+        <li>State machine</li>
+        <li>Transaction flow</li>
+        <li>Cash dispensing</li>
+        <li>Chain of Responsibility</li>
+        <li>Failure handling</li>
+    </ul>
+</div>
+
+<div class="day">
+    <h3>Day 24 — Chess + Tic-Tac-Toe</h3>
+
+    <ul>
+        <li>Game engine</li>
+        <li>Board</li>
+        <li>Players</li>
+        <li>Move validation</li>
+        <li>Turn management</li>
+        <li>Undo</li>
+        <li>Extending to N×N</li>
+    </ul>
+</div>
+
+<div class="day">
+    <h3>Day 25 — Snake & Ladder + Other Board Games</h3>
+
+    <ul>
+        <li>Board modeling</li>
+        <li>Dice abstraction</li>
+        <li>Turn management</li>
+        <li>Rules</li>
+        <li>Testability</li>
+    </ul>
+</div>
+
+<div class="day">
+    <h3>Day 26 — Splitwise / Expense Sharing</h3>
+
+    <ul>
+        <li>Equal split</li>
+        <li>Exact split</li>
+        <li>Percentage split</li>
+        <li>Ratio split</li>
+        <li>Strategy</li>
+        <li>Balance tracking</li>
+        <li>Debt simplification</li>
+    </ul>
+</div>
+
+<div class="day">
+    <h3>Day 27 — Movie Ticket Booking</h3>
+
+    <ul>
+        <li>Show</li>
+        <li>Screen</li>
+        <li>Seat</li>
+        <li>Seat locking</li>
+        <li>Booking state</li>
+        <li>Payment</li>
+        <li>Expiry</li>
+        <li>Concurrency</li>
+    </ul>
+</div>
+
+<div class="day">
+    <h3>Day 28 — Hotel + Car Rental</h3>
+
+    <ul>
+        <li>Availability</li>
+        <li>Date ranges</li>
+        <li>Reservation</li>
+        <li>Pricing Strategy</li>
+        <li>Cancellation</li>
+        <li>Booking states</li>
+    </ul>
+</div>
+
+<div class="day">
+    <h3>Day 29 — Logger Framework</h3>
+
+    <ul>
+        <li>Log levels</li>
+        <li>Logger</li>
+        <li>Appender</li>
+        <li>Formatter</li>
+        <li>Chain of Responsibility</li>
+        <li>Async logging</li>
+        <li>Thread safety</li>
+        <li>Log rotation</li>
+    </ul>
+</div>
+
+<div class="day">
+    <h3>Day 30 — Notification + Pub/Sub</h3>
+
+    <ul>
+        <li>Email</li>
+        <li>SMS</li>
+        <li>Push</li>
+        <li>User preferences</li>
+        <li>Observer</li>
+        <li>Publisher/subscriber</li>
+        <li>Retry</li>
+        <li>Filtering</li>
+    </ul>
+</div>
+
+<hr>
+
+<!-- ====================================================== -->
+<!-- PHASE 6 -->
+<!-- ====================================================== -->
+
+<div class="phase">
+
+    <h2>PHASE 6 — DATA STRUCTURE + INFRASTRUCTURE LLD</h2>
+
+    <p><strong>Days 31–36</strong></p>
+
+</div>
+
+<div class="day">
+    <h3>Day 31 — LRU Cache</h3>
+
+    <ul>
+        <li>Cache interface</li>
+        <li>HashMap + Doubly Linked List</li>
+        <li>O(1) get</li>
+        <li>O(1) put</li>
+        <li>Eviction policy</li>
+        <li>Thread safety</li>
+    </ul>
+</div>
+
+<div class="day">
+    <h3>Day 32 — LFU Cache + Pluggable Eviction</h3>
+
+    <ul>
+        <li>LFU</li>
+        <li>Frequency tracking</li>
+        <li>LRU vs LFU</li>
+        <li>Eviction interface</li>
+        <li>Strategy pattern</li>
+    </ul>
+</div>
+
+<div class="day">
+    <h3>Day 33 — Rate Limiter</h3>
+
+    <ul>
+        <li>Fixed Window</li>
+        <li>Sliding Window</li>
+        <li>Token Bucket</li>
+        <li>Leaky Bucket</li>
+        <li>Strategy</li>
+        <li>Concurrency</li>
+        <li>Per-user limits</li>
+    </ul>
+</div>
+
+<div class="day">
+    <h3>Day 34 — Task Scheduler</h3>
+
+    <ul>
+        <li>Task</li>
+        <li>Priority</li>
+        <li>Delayed tasks</li>
+        <li>Thread pool</li>
+        <li>Cancellation</li>
+        <li>Retry</li>
+        <li>Failure handling</li>
+    </ul>
+</div>
+
+<div class="day">
+    <h3>Day 35 — Hit Counter + Sliding Window Systems</h3>
+
+    <ul>
+        <li>Hit counter</li>
+        <li>Sliding window</li>
+        <li>Time-based expiration</li>
+        <li>Concurrency</li>
+        <li>Memory trade-offs</li>
+    </ul>
+</div>
+
+<div class="day">
+    <h3>Day 36 — In-Memory File System</h3>
+
+    <ul>
+        <li>Tree modeling</li>
+        <li>Composite</li>
+        <li>Path resolution</li>
+        <li>File/folder operations</li>
+        <li>Permissions</li>
+        <li>Visitor discussion</li>
+    </ul>
+</div>
+
+<hr>
+
+<!-- ====================================================== -->
+<!-- PHASE 7 -->
+<!-- ====================================================== -->
+
+<div class="phase">
+
+    <h2>PHASE 7 — DATABASE, CONCURRENCY & PRODUCTION LLD</h2>
+
+    <p><strong>Days 37–40</strong></p>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 37 — Persistence & Repository Design</h3>
+
+    <ul>
+        <li>Repository pattern</li>
+        <li>DAO vs Repository</li>
+        <li>Domain model vs persistence model</li>
+        <li>DTO</li>
+        <li>Transaction boundary</li>
+        <li>CRUD responsibility</li>
+        <li>Database abstraction</li>
+        <li>Testing repositories</li>
+    </ul>
+
+    <p class="problem">
+        Apply to: Order + Booking System
+    </p>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 38 — Database Concurrency & Consistency</h3>
+
+    <ul>
+        <li>Race conditions</li>
+        <li>Optimistic locking</li>
+        <li>Pessimistic locking</li>
+        <li>Atomic operations</li>
+        <li>Transactions</li>
+        <li>Isolation levels — interview level</li>
+        <li>Unique constraints</li>
+        <li>Duplicate requests</li>
+    </ul>
+
+    <p class="problem">
+        Apply to: Movie Booking + Wallet
+    </p>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 39 — Idempotency, Exceptions & Failure Handling</h3>
+
+    <ul>
+        <li>Idempotency</li>
+        <li>Idempotency key</li>
+        <li>Retry safety</li>
+        <li>Domain exceptions</li>
+        <li>Validation</li>
+        <li>Partial failure</li>
+        <li>Rollback</li>
+        <li>Compensation</li>
+    </ul>
+
+    <p class="problem">
+        Apply to: Payment + Order
+    </p>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 40 — Concurrency Masterclass</h3>
+
+    <ul>
+        <li>Thread safety</li>
+        <li>synchronized</li>
+        <li>Locks</li>
+        <li>Atomic classes</li>
+        <li>ConcurrentHashMap</li>
+        <li>Race conditions</li>
+        <li>Deadlock</li>
+        <li>Producer/Consumer</li>
+        <li>Thread pools</li>
+    </ul>
+
+    <p class="problem">
+        Practice: Concurrent Booking + Thread-safe Cache + Scheduler
+    </p>
+
+</div>
+
+<hr>
+
+<!-- ====================================================== -->
+<!-- PHASE 8 -->
+<!-- ====================================================== -->
+
+<div class="phase">
+
+    <h2>PHASE 8 — LARGE REAL-WORLD LLD</h2>
+
+    <p><strong>Days 41–43</strong></p>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 41 — Ride Sharing / Cab Booking</h3>
+
+    <ul>
+        <li>Rider</li>
+        <li>Driver</li>
+        <li>Ride lifecycle</li>
+        <li>Matching Strategy</li>
+        <li>Pricing Strategy</li>
+        <li>State</li>
+        <li>Notification</li>
+        <li>Concurrency</li>
+    </ul>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 42 — Food Ordering / Delivery System</h3>
+
+    <ul>
+        <li>User</li>
+        <li>Restaurant</li>
+        <li>Menu</li>
+        <li>Cart</li>
+        <li>Order</li>
+        <li>Payment</li>
+        <li>Delivery</li>
+        <li>Order State</li>
+        <li>Pricing</li>
+        <li>Notification</li>
+    </ul>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 43 — Chat / Social / Collaboration System</h3>
+
+    <ul>
+        <li>User</li>
+        <li>Conversation</li>
+        <li>Message</li>
+        <li>One-to-one chat</li>
+        <li>Group chat</li>
+        <li>Presence</li>
+        <li>Notification</li>
+        <li>Mediator</li>
+        <li>Observer</li>
+        <li>Repository</li>
+    </ul>
+
+</div>
+
+<hr>
+
+<!-- ====================================================== -->
+<!-- PHASE 9 -->
+<!-- ====================================================== -->
+
+<div class="phase">
+
+    <h2>PHASE 9 — MOCK INTERVIEWS & MASTER REVISION</h2>
+
+    <p><strong>Days 44–45</strong></p>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 44 — Senior LLD Mock Interview</h3>
+
+    <p>
+        Solve a completely unseen problem.
+    </p>
+
+    <ul>
+        <li>Requirements</li>
+        <li>Actors</li>
+        <li>Entities</li>
+        <li>Responsibilities</li>
+        <li>Relationships</li>
+        <li>Interfaces</li>
+        <li>Patterns</li>
+        <li>Java code</li>
+        <li>Concurrency</li>
+        <li>Database</li>
+        <li>Failure scenarios</li>
+        <li>Follow-up requirements</li>
+    </ul>
+
+</div>
+
+<div class="day">
+
+    <h3>Day 45 — Final Interview + 2-Hour Master Revision</h3>
+
+    <h4>Part 1 — Final Interview</h4>
+
+    <p>
+        One completely unseen senior-level LLD problem.
+    </p>
+
+    <h4>Part 2 — Pattern Recognition Test</h4>
+
+    <ul>
+        <li>Identify the changing behaviour.</li>
+        <li>Identify state-dependent behaviour.</li>
+        <li>Identify object creation complexity.</li>
+        <li>Identify event relationships.</li>
+        <li>Identify tree structures.</li>
+        <li>Identify incompatible interfaces.</li>
+        <li>Identify undo/history requirements.</li>
+    </ul>
+
+    <h4>Part 3 — Teaching Test</h4>
+
+    <p>
+        Explain every major pattern in simple language without reading notes.
+    </p>
+
+</div>
+
+<hr>
+
+<h2>📊 Complete Problem Portfolio</h2>
+
+<p>
+    The course deliberately does not advertise these as a copied
+    "mandatory 26-question list". These are the major problem families
+    we will solve throughout the course.
+</p>
+
+<table>
+
+    <tr>
+        <th>Category</th>
+        <th>Problems</th>
+    </tr>
+
+    <tr>
+        <td>Object Modeling</td>
+        <td>
+            Library, Order Management, Parking Lot, Hotel Management
+        </td>
+    </tr>
+
+    <tr>
+        <td>Creational</td>
+        <td>
+            Notification Factory, Payment Factory, Vehicle Factory,
+            Builder, Configuration/Logger
+        </td>
+    </tr>
+
+    <tr>
+        <td>Strategy</td>
+        <td>
+            Parking Pricing, Splitwise, Rate Limiter,
+            Ride Matching, Payment
+        </td>
+    </tr>
+
+    <tr>
+        <td>State</td>
+        <td>
+            Vending Machine, ATM, Elevator, Order,
+            Movie Booking, Ride Booking
+        </td>
+    </tr>
+
+    <tr>
+        <td>Observer / Events</td>
+        <td>
+            Notification, Stock Updates, Order Events,
+            Inventory Alerts, Pub/Sub
+        </td>
+    </tr>
+
+    <tr>
+        <td>Command / Memento</td>
+        <td>
+            Text Editor Undo/Redo, Chess Undo,
+            Drawing Application
+        </td>
+    </tr>
+
+    <tr>
+        <td>Chain</td>
+        <td>
+            ATM Cash Dispensing, Logger,
+            Validation Pipeline
+        </td>
+    </tr>
+
+    <tr>
+        <td>Composite</td>
+        <td>
+            File System, Menu, Organization Hierarchy
+        </td>
+    </tr>
+
+    <tr>
+        <td>Structural</td>
+        <td>
+            Payment Adapter, Checkout Facade,
+            Coffee Decorator, Authorization Proxy
+        </td>
+    </tr>
+
+    <tr>
+        <td>Games</td>
+        <td>
+            Chess, Tic-Tac-Toe, Snake & Ladder
+        </td>
+    </tr>
+
+    <tr>
+        <td>Booking</td>
+        <td>
+            Hotel, Movie Ticket, Car Rental,
+            Flight/Reservation
+        </td>
+    </tr>
+
+    <tr>
+        <td>Infrastructure</td>
+        <td>
+            LRU Cache, LFU Cache, Rate Limiter,
+            Hit Counter, Scheduler, Pub/Sub
+        </td>
+    </tr>
+
+    <tr>
+        <td>Production</td>
+        <td>
+            Logger, Notification, Repository,
+            Payment, Order, Wallet
+        </td>
+    </tr>
+
+    <tr>
+        <td>Large LLD</td>
+        <td>
+            Ride Sharing, Food Delivery,
+            Chat/Collaboration
+        </td>
+    </tr>
+
+</table>
+
+<hr>
+
+<h2>🗄️ Database Coverage</h2>
+
+<p>
+    Database is intentionally included, but this is not a database-design course.
+</p>
+
+<ul>
+    <li>Repository</li>
+    <li>DAO</li>
+    <li>Domain vs persistence model</li>
+    <li>DTO</li>
+    <li>Transactions</li>
+    <li>ACID — interview level</li>
+    <li>Optimistic locking</li>
+    <li>Pessimistic locking</li>
+    <li>Unique constraints</li>
+    <li>Indexes — when they matter</li>
+    <li>Pagination</li>
+    <li>N+1 awareness</li>
+    <li>Soft delete</li>
+    <li>Audit fields</li>
+    <li>Idempotency</li>
+    <li>Persistence failure</li>
+    <li>Retry and duplicate requests</li>
+</ul>
+
+<hr>
+
+<h2>⚡ Two-Hour Final Revision</h2>
+
+<table>
+
+    <tr>
+        <th>Topic</th>
+        <th>Time</th>
+    </tr>
+
+    <tr>
+        <td>LLD interview framework</td>
+        <td>10 min</td>
+    </tr>
+
+    <tr>
+        <td>OOP + Relationships + SOLID</td>
+        <td>15 min</td>
+    </tr>
+
+    <tr>
+        <td>Design Patterns</td>
+        <td>25 min</td>
+    </tr>
+
+    <tr>
+        <td>Core LLD Problems</td>
+        <td>25 min</td>
+    </tr>
+
+    <tr>
+        <td>Cache + Rate Limiter + Scheduler</td>
+        <td>15 min</td>
+    </tr>
+
+    <tr>
+        <td>Concurrency + Database</td>
+        <td>15 min</td>
+    </tr>
+
+    <tr>
+        <td>Production + Large LLD</td>
+        <td>10 min</td>
+    </tr>
+
+    <tr>
+        <td>Pattern Recognition + Interview Questions</td>
+        <td>5 min</td>
+    </tr>
+
+</table>
+
+<p><strong>Total: approximately 120 minutes.</strong></p>
+
+<hr>
+
+<h2>📁 GitHub Repository Structure</h2>
+
+<pre>
+lld-interview-mastery/
+│
+├── README.md
+│
+├── 01-foundation/
+│   ├── day-01-lld-interview-approach.html
+│   ├── day-02-oop-for-lld.html
+│   ├── day-03-object-relationships.html
+│   ├── day-04-interfaces-polymorphism.html
+│   ├── day-05-solid.html
+│   ├── day-06-design-smells.html
+│   └── day-07-uml.html
+│
+├── 02-creational-patterns/
+│   ├── day-08-factory.html
+│   ├── day-09-builder-prototype.html
+│   └── day-10-singleton.html
+│
+├── 03-structural-patterns/
+│   ├── day-11-adapter-facade.html
+│   ├── day-12-decorator-proxy.html
+│   ├── day-13-composite.html
+│   └── day-14-bridge-flyweight.html
+│
+├── 04-behavioral-patterns/
+│   ├── day-15-strategy.html
+│   ├── day-16-observer.html
+│   ├── day-17-state.html
+│   ├── day-18-command-memento.html
+│   ├── day-19-chain-of-responsibility.html
+│   └── day-20-other-behavioral-patterns.html
+│
+├── 05-core-problems/
+│   ├── day-21-parking-lot.html
+│   ├── day-22-elevator.html
+│   ├── day-23-vending-machine-atm.html
+│   ├── day-24-chess-tic-tac-toe.html
+│   ├── day-25-snake-and-ladder.html
+│   ├── day-26-splitwise.html
+│   ├── day-27-movie-ticket-booking.html
+│   ├── day-28-hotel-car-rental.html
+│   ├── day-29-logger-framework.html
+│   └── day-30-notification-pubsub.html
+│
+├── 06-infrastructure-lld/
+│   ├── day-31-lru-cache.html
+│   ├── day-32-lfu-cache.html
+│   ├── day-33-rate-limiter.html
+│   ├── day-34-task-scheduler.html
+│   ├── day-35-hit-counter.html
+│   └── day-36-in-memory-file-system.html
+│
+├── 07-production-lld/
+│   ├── day-37-repository-persistence.html
+│   ├── day-38-database-concurrency.html
+│   ├── day-39-idempotency-failure-handling.html
+│   └── day-40-concurrency-masterclass.html
+│
+├── 08-large-systems/
+│   ├── day-41-ride-sharing.html
+│   ├── day-42-food-delivery.html
+│   └── day-43-chat-system.html
+│
+├── 09-mock-interviews/
+│   ├── day-44-senior-lld-mock.html
+│   └── day-45-final-interview.html
+│
+└── docs/
+    ├── pattern-recognition.md
+    ├── solid-cheatsheet.md
+    ├── uml-cheatsheet.md
+    ├── concurrency-cheatsheet.md
+    ├── database-lld-cheatsheet.md
+    ├── problem-pattern-map.md
+    ├── interview-framework.md
+    └── final-2-hour-revision.md
+</pre>
+
+<hr>
+
+<h2>🏆 What You Should Be Able to Do After 45 Days</h2>
+
+<ul>
+    <li>Design a problem you have never seen before.</li>
+    <li>Recognize common LLD structures quickly.</li>
+    <li>Use patterns because they solve a real problem.</li>
+    <li>Avoid unnecessary patterns.</li>
+    <li>Write interview-ready Java code.</li>
+    <li>Handle concurrency questions.</li>
+    <li>Discuss database interaction.</li>
+    <li>Handle failures and retries.</li>
+    <li>Explain trade-offs.</li>
+    <li>Extend your design during interviewer follow-ups.</li>
+    <li>Explain the complete design to another developer.</li>
+</ul>
+
+<h2>🔥 Final Principle</h2>
+
+<p>
+    <strong>
+        Do not memorize "Parking Lot = Strategy + Factory + Singleton".
+    </strong>
+</p>
+
+<p>
+    Instead ask:
+</p>
+
+<blockquote>
+    What changes?<br>
+    Who owns this responsibility?<br>
+    Who creates this object?<br>
+    Who needs to know about this event?<br>
+    Does behaviour depend on state?<br>
+    Can I extend this without modifying existing code?<br>
+    What happens when two threads do this simultaneously?<br>
+    What happens when the database operation fails?
+</blockquote>
+
+<p>
+    That is the skill this 45-day course is designed to build.
+</p>
+
+</body>
+</html>
