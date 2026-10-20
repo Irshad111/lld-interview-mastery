@@ -2,6 +2,12 @@
 
 A practical, Java-based course to prepare for Low-Level Design (LLD) interviews.
 
+## 🌐 Course Website
+
+**[Open LLD Interview Mastery — 45-Day Course](https://irshad111.github.io/lld-interview-mastery/)**
+
+Explore the lessons, practical Java implementations, coding exercises, and interview preparation material.
+
 ## Goal
 
 Learn to design maintainable object-oriented systems, implement them in Java, test important behavior, and explain design decisions confidently during interviews.
